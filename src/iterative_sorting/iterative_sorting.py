@@ -2,6 +2,9 @@
 # TO-DO: Complete the selection_sort() function below
 
 
+from collections import defaultdict
+
+
 def selection_sort(arr):
     # loop through n-1 elements
     length = len(arr)
@@ -47,6 +50,41 @@ def bubble_sort(arr):
 
 
 # STRETCH: implement the Count Sort function below
-def count_sort(arr, maximum=-1):
+
+
+def count_sort(arr):
     # Your code here
-    return arr
+    count = defaultdict(int)
+    # arrays length of 1 and less our sorted
+    if len(arr) <= 1:
+        return arr
+    # maximum value in array (pretend not given)
+    k = 0
+    # tally all values in dictionary
+    for i in arr:
+        count[i] += 1
+        if i > k:
+            k = i
+    # create a new array with length of k+1
+    setup = [0] * (k+1)
+    # runner tells us what all numbers prior =
+    runner = 0
+    # loop thru all values of k in dictionary and insert into list
+    for j in range(k+1):
+        runner += count[j]
+        setup[j] = runner
+    # create the final array which will return a sorted array
+    final = [0] * len(arr)
+    # lastly loop thru arr 1 last time find index in setup by decrement 1 and set final[index] to arr[i]
+    for i in range(len(arr)):
+        setup[arr[i]] -= 1
+        index = setup[arr[i]]
+        final[index] = arr[i]
+
+    return final
+
+
+print(count_sort([1]))
+print(count_sort([2]))
+print(count_sort([1, 2, 3, 4, 5]))
+print(count_sort([1, 2, 1, 3, 2, 1, 5, 4, 2, 3, 1, 0, 0, 0, 0]))
