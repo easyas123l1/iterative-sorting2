@@ -36,7 +36,7 @@ def bubble_sort(arr):
     # Your code here
     length = len(arr)
     changes = True
-    while length > 0 and changes == True:
+    while length > 0 and changes:
         changes = False
         for i in range(0, length-1):
             if arr[i] > arr[i+1]:
@@ -76,6 +76,7 @@ def count_sort(arr):
     # create the final array which will return a sorted array
     final = [0] * len(arr)
     # lastly loop thru arr 1 last time find index in setup by decrement 1 and set final[index] to arr[i]
+    print(setup)
     for i in range(len(arr)):
         setup[arr[i]] -= 1
         index = setup[arr[i]]
@@ -84,7 +85,4 @@ def count_sort(arr):
     return final
 
 
-print(count_sort([1]))
-print(count_sort([2]))
-print(count_sort([1, 2, 3, 4, 5]))
-print(count_sort([1, 2, 1, 3, 2, 1, 5, 4, 2, 3, 1, 0, 0, 0, 0]))
+print(count_sort([4, 3, 2, 6, 8, 1, 3]))
